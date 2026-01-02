@@ -23,6 +23,8 @@
     packages = with pkgs; [];
   };
 
+  nixpkgs.config.allowUnfree = true;
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # This value determines the NixOS release from which the default
