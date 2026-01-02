@@ -11,18 +11,19 @@
   };
 
   outputs =
-    { self, nixpkgs, ... }@inputs:
-    {
+    { self, nixpkgs, ... }@inputs: let
+      system = "x86_64-linux";
+    in {
       nixosConfigurations = {
         thinkpad = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
+          inherit system;
 	  specialArgs = { inherit inputs; };
           modules = [
             ./hosts/thinkpad/default.nix
           ];
         };
 	wsl = nixpkgs.lib.nixosSystem {
-	  system = "x86_64-linux";
+          inherit system;
 	  specialArgs = { inherit inputs; };
 	  modules = [
 	    ./hosts/wsl/default.nix
