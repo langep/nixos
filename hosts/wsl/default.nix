@@ -16,6 +16,7 @@
 
   wsl.enable = true;
   wsl.defaultUser = "patlange";
+  wsl.interop.register = true;
 
   users.users.patlange = {
     isNormalUser = true;
