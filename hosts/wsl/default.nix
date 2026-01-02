@@ -12,27 +12,18 @@
     # include NixOS-WSL modules
     inputs.nixos-wsl.nixosModules.wsl
     inputs.vscode-server.nixosModules.default
+    ../common/default.nix
   ];
 
+  # Network
+  networking.hostName = "wsl";
+
+  # WSL Setup
   wsl.enable = true;
   wsl.defaultUser = "patlange";
   wsl.interop.register = true;
 
-  users.users.patlange = {
-    isNormalUser = true;
-    description = "Patrick Lange";
-    extraGroups = [ "wheel" ];
-    packages = with pkgs; [];
-  };
-
-  nixpkgs.config.allowUnfree = true;
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  environment.systemPackages = with pkgs; [
-    # wget
-  ];
-
+  # Fix VS Code Server
   services.vscode-server.enable = true;
 
   # This value determines the NixOS release from which the default
