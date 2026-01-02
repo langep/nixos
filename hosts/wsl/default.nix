@@ -10,7 +10,8 @@
 {
   imports = [
     # include NixOS-WSL modules
-    inputs.nixos-wsl.nixosModules.wsl    
+    inputs.nixos-wsl.nixosModules.wsl
+    inputs.vscode-server.nixosModules.default
   ];
 
   wsl.enable = true;
@@ -30,6 +31,8 @@
   environment.systemPackages = with pkgs; [
     # wget
   ];
+
+  services.vscode-server.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
