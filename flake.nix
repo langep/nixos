@@ -4,8 +4,16 @@
   inputs = {
     # Common
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    
+    # Home Manager
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Thinkpad
     nixos-hardware.url = "github:nixos/nixos-hardware/master";
+
     # WSL
     nixos-wsl = {
       url = "github:nix-community/NixOS-WSL/main";
@@ -15,22 +23,24 @@
   };
 
   outputs =
-    { self, nixpkgs, ... }@inputs: let
+    { self, nixpkgs, home-manager,... }@inputs: let
       system = "x86_64-linux";
     in {
       nixosConfigurations = {
         thinkpad = nixpkgs.lib.nixosSystem {
           inherit system;
 	        specialArgs = { inherit inputs; };
-          modules = [
+	        modules = [
             ./hosts/thinkpad/default.nix
-          ];
+	          home-manager.nixosModules.home-manager	          
+	        ];
         };
         wsl = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs; };
           modules = [
             ./hosts/wsl/default.nix
+            home-manager.nixosModules.home-manager            
           ];
         };
       };

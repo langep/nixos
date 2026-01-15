@@ -26,4 +26,10 @@
         LC_TELEPHONE = "en_US.UTF-8";
         LC_TIME = "en_US.UTF-8";
     };
+
+    home-manager = {
+        useGlobalPkgs = true;
+        useUserPackages = true;
+        users.patlange = ../../home/default.nix;
+    };
 }
