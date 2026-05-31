@@ -30,6 +30,6 @@
     home-manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
-        users.patlange = ../../home/default.nix;
+        users.langep = ../../home/default.nix;
     };
 }

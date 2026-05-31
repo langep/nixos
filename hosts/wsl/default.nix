@@ -20,7 +20,7 @@
 
   # WSL Setup
   wsl.enable = true;
-  wsl.defaultUser = "patlange";
+  wsl.defaultUser = "langep";
   wsl.interop.register = true;
 
   # Fix VS Code Server
