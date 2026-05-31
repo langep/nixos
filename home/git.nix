@@ -8,6 +8,9 @@
         name = "Patrick Lange";
         email = "patrick.l.lange@gmail.com";
       };
+      extraConfig = {
+        core.editor = "hx";
+      };
     };
   };
 
