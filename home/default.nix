@@ -11,9 +11,9 @@
     ./helix.nix
   ] ++ lib.optionals osConfig.programs.hyprland.enable [
     ./hyprland.nix
+  ] ++ lib.optionals osConfig.programs._1password.enable [
+    ./1password.nix
   ];
-
-  
 
   home.sessionVariables = {
     EDITOR = "hx";
