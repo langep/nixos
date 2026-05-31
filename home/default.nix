@@ -10,6 +10,11 @@
     ./git.nix
     ./helix.nix
   ];
+
+  home.sessionVariables = {
+    EDITOR = "hx";
+    VISUAL = "hx";
+  };
   
   home.stateVersion = "23.11";
 }
