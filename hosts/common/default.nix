@@ -1,6 +1,6 @@
 { pkgs, ... }: {
     # Define a user account. Don't forget to set a password with ‘passwd’.
-    users.users.patlange = {
+    users.users.langep = {
         isNormalUser = true;
         description = "Patrick Lange";
         extraGroups = [ "networkmanager" "wheel" ];
