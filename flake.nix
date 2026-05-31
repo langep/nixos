@@ -32,7 +32,7 @@
 	        specialArgs = { inherit inputs; };
 	        modules = [
             ./hosts/thinkpad/default.nix
-	          home-manager.nixosModules.home-manager	          
+	          home-manager.nixosModules.home-manager
 	        ];
         };
         wsl = nixpkgs.lib.nixosSystem {
@@ -40,7 +40,7 @@
           specialArgs = { inherit inputs; };
           modules = [
             ./hosts/wsl/default.nix
-            home-manager.nixosModules.home-manager            
+            home-manager.nixosModules.home-manager
           ];
         };
       };

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ osConfig, pkgs, lib, ... }:
 {
   home.packages = with pkgs; [ 
     htop
@@ -9,7 +9,11 @@
     ./foot.nix
     ./git.nix
     ./helix.nix
+  ] ++ lib.optionals osConfig.programs.hyprland.enable [
+    ./hyprland.nix
   ];
+
+  
 
   home.sessionVariables = {
     EDITOR = "hx";
