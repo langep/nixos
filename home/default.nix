@@ -1,12 +1,11 @@
 { config, pkgs, ... }:
 {
-  programs.zsh.enable = true;
-
   home.packages = with pkgs; [ 
     htop
   ];
 
   imports = [
+    ./fish.nix
     ./foot.nix
     ./git.nix
     ./helix.nix
