@@ -11,6 +11,7 @@
       ./hardware-configuration.nix
       ../common/default.nix
       ../common/hyprland.nix
+      ../common/1password.nix
     ];
 
   # Bootloader.

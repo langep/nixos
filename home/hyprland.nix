@@ -1,4 +1,5 @@
 { pkgs, lib, ... }: {
+  services.hyprpolkitagent.enable = true;
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
@@ -20,6 +21,7 @@
 
       exec-once = [
         "mako"
+        
       ];
 
       bind = [

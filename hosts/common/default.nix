@@ -1,21 +1,8 @@
 { pkgs, ... }: {
-    # Define a user account. Don't forget to set a password with ‘passwd’.
-    programs.fish.enable = true;
-    users.users.langep = {
-        isNormalUser = true;
-        description = "Patrick Lange";
-        extraGroups = [ "networkmanager" "wheel" ];
-        packages = with pkgs; [];
-        shell = pkgs.fish;
-    };
-
-    nixpkgs.config.allowUnfree = true;
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-    # Set your time zone.
+    
+    # Time zone and locale
     time.timeZone = "America/Los_Angeles";
-
-    # Select internationalisation properties.
     i18n.defaultLocale = "en_US.UTF-8";
     i18n.extraLocaleSettings = {
         LC_ADDRESS = "en_US.UTF-8";
@@ -29,6 +16,18 @@
         LC_TIME = "en_US.UTF-8";
     };
 
+    # Packages
+    nixpkgs.config.allowUnfree = true;
+
+    # User
+    programs.fish.enable = true;
+    users.users.langep = {
+        isNormalUser = true;
+        description = "Patrick Lange";
+        extraGroups = [ "networkmanager" "wheel" ];
+        packages = with pkgs; [];
+        shell = pkgs.fish;
+    };
     home-manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
