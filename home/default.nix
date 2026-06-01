@@ -9,10 +9,9 @@
     ./foot.nix
     ./git.nix
     ./helix.nix
+    ./ssh.nix
   ] ++ lib.optionals osConfig.programs.hyprland.enable [
     ./hyprland.nix
-  ] ++ lib.optionals osConfig.programs._1password.enable [
-    ./1password.nix
   ];
 
   home.sessionVariables = {
