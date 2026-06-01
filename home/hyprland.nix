@@ -1,10 +1,17 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, osConfig, ... }:
+let
+  monitorsByHost = {
+    "thinkpad" = "eDP-1,3840x2400@60,0x0,2";
+  };
+  monitors = monitorsByHost.${osConfig.networking.hostName};
+in
+{
   services.hyprpolkitagent.enable = true;
   wayland.windowManager.hyprland = {
     enable = true;
     configType = "hyprlang"; # pin until HM support for lua is mature
     settings = {
-      monitor = [",preferred,auto,1"];
+      monitor = monitors;
 
       input = {
         kb_layout = "us";
