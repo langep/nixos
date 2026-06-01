@@ -12,6 +12,7 @@
     ./ssh.nix
   ] ++ lib.optionals osConfig.programs.hyprland.enable [
     ./hyprland.nix
+    ./librewolf.nix
   ];
 
   home.sessionVariables = {
