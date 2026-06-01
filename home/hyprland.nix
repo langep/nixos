@@ -29,7 +29,7 @@ in
 
       exec-once = [
         "mako"
-        
+        "waybar"
       ];
 
       bind = [

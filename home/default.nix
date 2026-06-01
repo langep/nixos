@@ -13,6 +13,7 @@
   ] ++ lib.optionals osConfig.programs.hyprland.enable [
     ./hyprland.nix
     ./librewolf.nix
+    ./waybar.nix
   ];
 
   home.sessionVariables = {
