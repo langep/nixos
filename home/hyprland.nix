@@ -2,6 +2,7 @@
   services.hyprpolkitagent.enable = true;
   wayland.windowManager.hyprland = {
     enable = true;
+    configType = "hyprlang"; # pin until HM support for lua is mature
     settings = {
       monitor = [",preferred,auto,1"];
 
