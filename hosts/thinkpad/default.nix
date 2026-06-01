@@ -16,6 +16,10 @@
 
   # Kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelModules = [
+    "coretemp"
+    "thinkpad_acpi"
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
