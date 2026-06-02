@@ -1,12 +1,13 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, ... }:
+{
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
   };
 
   xdg.portal = {
-   enable = true;
-   extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
   # Login
@@ -14,7 +15,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --asterisks --time --remember --cmd /usr/bin/start-hyprland";
+        command = "${pkgs.tuigreet}/bin/tuigreet --asterisks --time --remember --cmd start-hyprland";
         user = "greeter";
       };
     };
