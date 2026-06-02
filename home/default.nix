@@ -28,6 +28,9 @@
     ./hyprland.nix
     ./librewolf.nix
     ./waybar.nix
+  ]
+  ++ lib.optionals (osConfig.networking.hostName == "thinkpad") [
+    ./lockscreen.nix
   ];
 
   xdg.userDirs = {
