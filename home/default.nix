@@ -7,8 +7,11 @@
 {
   home.packages = with pkgs; [
     htop
-    grim
-    slurp
+    grim # screenshots
+    slurp # screenshots
+    yazi # tui file browser
+    chafa # image-to-terminal
+    swayimg # image-viewer
   ];
 
   imports = [
