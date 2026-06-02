@@ -15,12 +15,14 @@
   ];
 
   imports = [
+    ./direnv.nix
     ./discord.nix
     ./fish.nix
     ./foot.nix
     ./git.nix
     ./helix.nix
     ./ssh.nix
+    ./zoxide.nix
   ]
   ++ lib.optionals osConfig.programs.hyprland.enable [
     ./hyprland.nix
