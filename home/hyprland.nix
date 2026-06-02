@@ -1,4 +1,9 @@
-{ pkgs, lib, osConfig, ... }:
+{
+  pkgs,
+  lib,
+  osConfig,
+  ...
+}:
 let
   monitorsByHost = {
     "thinkpad" = "eDP-1,3840x2400@60,0x0,2";
@@ -54,12 +59,15 @@ in
         "SUPER, 3, workspace, 3"
         "SUPER, 4, workspace, 4"
         "SUPER, 5, workspace, 5"
-        
+
         "SUPER SHIFT, 1, movetoworkspace, 1"
         "SUPER SHIFT, 2, movetoworkspace, 2"
         "SUPER SHIFT, 3, movetoworkspace, 3"
         "SUPER SHIFT, 4, movetoworkspace, 4"
         "SUPER SHIFT, 5, movetoworkspace, 5"
+
+        ", Print, exec, grim ~/Pictures/$(date +'%y-%m-%d_%h-%m-%s')_screenshot.png"
+
       ];
 
       bindm = [
