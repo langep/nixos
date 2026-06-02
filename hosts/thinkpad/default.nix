@@ -2,17 +2,22 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
-      ./hardware-configuration.nix
-      ../common/default.nix
-      ../common/hyprland.nix
-      ../common/1password.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
+    ./hardware-configuration.nix
+    ../common/default.nix
+    ../common/hyprland.nix
+    ../common/1password.nix
+  ];
 
   # Kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -30,9 +35,16 @@
     enable = true;
     dns = "systemd-resolved";
   };
-  networking.nameservers = [ "1.1.1.1" "8.8.8.8" "2606:4700:4700::1111"];
+  networking.nameservers = [
+    "1.1.1.1"
+    "8.8.8.8"
+    "2606:4700:4700::1111"
+  ];
   services.resolved.enable = true;
   networking.hostName = "thinkpad";
+
+  # Firmware Updates
+  services.fwupd.enable = true;
 
   # Power Management
   services.tlp = {
@@ -54,6 +66,10 @@
       # WiFi power save
       WIFI_PWR_ON_AC = "off";
       WIFI_PWR_ON_BAT = "on";
+
+      # Deep sleep
+      MEM_SLEEP_MODE_ON_AC = "deep";
+      MEM_SLEEP_MODE_ON_BAT = "deep";
     };
   };
 
