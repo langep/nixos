@@ -1,4 +1,9 @@
-{ pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   programs.hyprland = {
     enable = true;
@@ -45,7 +50,8 @@
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
-  } // lib.optionalAttrs (builtins.elem "nvidia" config.services.xserver.videoDrivers) {
+  }
+  // lib.optionalAttrs (builtins.elem "nvidia" config.services.xserver.videoDrivers) {
     GBM_BACKEND = "nvidia-drm";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     WLR_NO_HARDWARE_CURSORS = "1";
