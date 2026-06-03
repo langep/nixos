@@ -11,8 +11,6 @@
 
 {
   imports = [
-    # Include the results of the hardware scan.
-    inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-7th-gen
     ./hardware-configuration.nix
     ../common/default.nix
     ../common/hyprland.nix
@@ -21,10 +19,10 @@
   ];
 
   # Kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelModules = [
-    "coretemp"
-    "thinkpad_acpi"
+  boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.kernelParams = [
+    "amd_pstate=active"
+    "nvidia-drm.fbdev=1"
   ];
 
   # Bootloader.
@@ -32,40 +30,26 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Network
-  networking.hostName = "thinkpad";
+  networking.hostName = "desktop";
 
   # Firmware Updates
+  hardware.enableRedistributableFirmware = true;
   services.fwupd.enable = true;
+  hardware.cpu.amd.updateMicrocode = true; # CPU microcode
 
-  # Power Management
-  services.tlp = {
-    enable = true;
-    settings = {
-      # CPU scaling
-      CPU_SCALING_GOVERNOR_ON_AC = "performance";
-      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-
-      # CPU energy/performance policy
-      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
-
-      # Battery charge thresholds — good for ThinkPad
-      # keeps battery between 40-80% to extend lifespan
-      START_CHARGE_THRESH_BAT0 = 40;
-      STOP_CHARGE_THRESH_BAT0 = 80;
-
-      # WiFi power save
-      WIFI_PWR_ON_AC = "off";
-      WIFI_PWR_ON_BAT = "on";
-
-      # Deep sleep
-      MEM_SLEEP_MODE_ON_AC = "deep";
-      MEM_SLEEP_MODE_ON_BAT = "deep";
-    };
+  # NVIDIA RTX 5090 (Blackwell — open modules required)
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.graphics.enable = true;
+  hardware.graphics.enable32Bit = true; # Steam
+  hardware.nvidia = {
+    open = true;
+    modesetting.enable = true;
+    powerManagement.enable = false;
+    nvidiaSettings = true;
   };
 
-  # Thermal Throttling
-  services.thermald.enable = true;
+  # SSD
+  services.fstrim.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

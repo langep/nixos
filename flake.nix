@@ -41,6 +41,15 @@
     in
     {
       nixosConfigurations = {
+        desktop = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/desktop/default.nix
+            home-manager.nixosModules.home-manager
+            stylix.nixosModules.stylix
+          ];
+        };        
         thinkpad = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs; };
