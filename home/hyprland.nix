@@ -76,6 +76,9 @@ in
         "SUPER, 4, workspace, 4"
         "SUPER, 5, workspace, 5"
 
+        "SUPER, Tab, workspace, e+1"
+        "SUPER SHIFT, Tab, workspace, e-1"
+
         "SUPER SHIFT, 1, movetoworkspace, 1"
         "SUPER SHIFT, 2, movetoworkspace, 2"
         "SUPER SHIFT, 3, movetoworkspace, 3"
