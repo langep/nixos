@@ -7,8 +7,23 @@
 let
   monitorsByHost = {
     "thinkpad" = "eDP-1,3840x2400@60,0x0,2";
+    "desktop" = [
+      "DP-1,3840x2160@239.98Hz,0x0,1"
+      "DP-2,2560x1440@144Hz,3840x0,1"
+    ];
   };
-  monitors = monitorsByHost.${osConfig.networking.hostName};
+  workspacesByHost = {
+    "thinkpad" = [ ];
+    "desktop" = [
+      "1,monitor:DP-1"
+      "2,monitor:DP-1"
+      "3,monitor:DP-1"
+      "4,monitor:DP-2"
+      "5,monitor:DP-2"
+    ];
+  };
+  monitors = monitorsByHost.${osConfig.networking.hostName} or [ ];
+  workspaces = workspacesByHost.${osConfig.networking.hostName} or [ ];
 in
 {
   services.hyprpolkitagent.enable = true;
@@ -17,6 +32,7 @@ in
     configType = "hyprlang"; # pin until HM support for lua is mature
     settings = {
       monitor = monitors;
+      workspace = workspaces;
 
       input = {
         kb_layout = "us";
