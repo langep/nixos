@@ -23,6 +23,7 @@
     ./git.nix
     ./helix.nix
     ./ssh.nix
+    ./tmux.nix
     ./zoxide.nix
   ]
   ++ lib.optionals osConfig.programs.hyprland.enable [
