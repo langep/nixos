@@ -12,6 +12,7 @@
     yazi # tui file browser
     chafa # image-to-terminal
     swayimg # image-viewer
+    pavucontrol # audio settings gui
   ];
 
   imports = [

@@ -63,6 +63,7 @@
             ];
           };
           on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+          on-right-click = "pavucontrol";
         };
 
         tray = {
