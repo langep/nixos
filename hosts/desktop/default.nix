@@ -16,6 +16,7 @@
     ../common/hyprland.nix
     ../common/1password.nix
     ../common/networking.nix
+    ../common/steam.nix
   ];
 
   # Kernel
