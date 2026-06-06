@@ -26,6 +26,7 @@ let
   workspaces = workspacesByHost.${osConfig.networking.hostName} or [ ];
 in
 {
+  services.hyprpaper.enable = true;
   services.hyprpolkitagent.enable = true;
   wayland.windowManager.hyprland = {
     enable = true;
