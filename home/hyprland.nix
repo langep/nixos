@@ -52,6 +52,7 @@ in
       exec-once = [
         "mako"
         "waybar"
+        "1password --silent"
       ];
 
       bind = [
