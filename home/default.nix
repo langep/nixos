@@ -30,6 +30,7 @@
     ./hyprland.nix
     ./librewolf.nix
     ./waybar.nix
+    ./zed.nix
   ]
   ++ lib.optionals (osConfig.networking.hostName == "thinkpad") [
     ./lockscreen.nix

@@ -13,10 +13,20 @@
       {
         plugin = tmux-thumbs;
         extraConfig = ''
-          set -g @thumbs-key Space
+          set -g @thumbs-key f
           set -g @thumbs-command 'echo -n {} | wl-copy'
         '';
       }
+
+      {
+        plugin = tmux-which-key;
+        extraConfig = ''
+          set -g @tmux-which-key-xdg-enable 1
+          set -g @tmux-which-key-disable-autobuild 1
+          set -g @tmux-which-key-xdg-plugin-path "tmux-plugins/tmux-which-key"
+        '';
+      }
+
       resurrect
       continuum
     ];
