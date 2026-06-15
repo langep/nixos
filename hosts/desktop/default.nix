@@ -53,6 +53,14 @@
     __GL_SHADER_DISK_CACHE_SIZE = "68719476736";
   };
 
+  # Bluetooth
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+
+  services.blueman.enable = true;
+
   # SSD
   services.fstrim.enable = true;
 
