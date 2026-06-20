@@ -6,6 +6,7 @@
   config,
   pkgs,
   inputs,
+  lib,
   ...
 }:
 
@@ -63,6 +64,14 @@
 
   # SSD
   services.fstrim.enable = true;
+
+  # Docker
+  virtualisation.docker = {
+    enable = true;
+    enableNvidia = true;
+  };
+  hardware.nvidia-container-toolkit.enable = true;
+  users.users.langep.extraGroups = lib.mkAfter [ "docker" ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
