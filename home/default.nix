@@ -13,6 +13,7 @@
     chafa # image-to-terminal
     swayimg # image-viewer
     pavucontrol # audio settings gui
+    obsidian # notes
   ];
 
   imports = [
