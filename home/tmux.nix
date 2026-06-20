@@ -63,6 +63,10 @@
         set -g status-right ""
         set -g status-left-length 100
         set -g status-right-length 100
+
+        # Setup for Pi
+        set -g extended-keys on
+        set -g extended-keys-format csi-u
       '';
   };
 }
