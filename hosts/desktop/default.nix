@@ -16,7 +16,6 @@
     ../common/default.nix
     ../common/hyprland.nix
     ../common/1password.nix
-    ../common/networking.nix
     ../common/steam.nix
   ];
 
@@ -25,7 +24,10 @@
   boot.kernelParams = [
     "amd_pstate=active"
     "nvidia-drm.fbdev=1"
+    "quiet"
+    "udev.log_priority=3"
   ];
+  boot.consoleLogLevel = 3;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -65,10 +67,51 @@
   # SSD
   services.fstrim.enable = true;
 
+  # Networking
+  networking = {
+    networkmanager.enable = false;
+    useNetworkd = true;
+    useDHCP = false;
+  };
+
+  systemd.network = {
+    enable = true;
+    networks."10-wired" = {
+      matchConfig.Name = "enp7s0";
+      networkConfig = {
+        DHCP = "ipv4";
+        IPv6AcceptRA = true;
+        DNS = [
+          "1.1.1.1"
+          "1.0.0.1"
+          "2606:4700:4700::1111"
+          "2606:4700:4700::1001"
+        ];
+      };
+      dhcpV4Config = {
+        UseDNS = false;
+        RouteMetric = 10; # routing priority should we e.g. add wifi later
+      };
+
+      dhcpV6Config = {
+        UseDNS = false;
+      };
+
+      ipv6AcceptRAConfig = {
+        UseDNS = false;
+      };
+    };
+  };
+
+  services.resolved = {
+    enable = true;
+    dnssec = "false";
+  };
+
   # Docker
   virtualisation.docker = {
     enable = true;
-    enableNvidia = true;
+    daemon.settings.features.cdi = true;
   };
   hardware.nvidia-container-toolkit.enable = true;
   users.users.langep.extraGroups = lib.mkAfter [ "docker" ];
