@@ -2,6 +2,7 @@
   osConfig,
   pkgs,
   lib,
+  inputs,
   ...
 }:
 {
@@ -17,6 +18,7 @@
   ];
 
   imports = [
+    ./ai.nix
     ./direnv.nix
     ./discord.nix
     ./fish.nix

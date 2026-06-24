@@ -105,7 +105,7 @@
 
   services.resolved = {
     enable = true;
-    dnssec = "false";
+    settings.Resolve.DNSSET = "false";
   };
 
   # Docker

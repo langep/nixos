@@ -26,6 +26,13 @@
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    antigravity-nix = {
+      url = "github:jacopone/antigravity-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    claude-code.url = "github:sadjow/claude-code-nix";
+    codex-cli-nix.url = "github:sadjow/codex-cli-nix";
   };
 
   outputs =
@@ -48,8 +55,9 @@
             ./hosts/desktop/default.nix
             home-manager.nixosModules.home-manager
             stylix.nixosModules.stylix
+            { home-manager.extraSpecialArgs = { inherit inputs; }; }
           ];
-        };        
+        };
         thinkpad = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs; };
@@ -57,6 +65,7 @@
             ./hosts/thinkpad/default.nix
             home-manager.nixosModules.home-manager
             stylix.nixosModules.stylix
+            { home-manager.extraSpecialArgs = { inherit inputs; }; }
           ];
         };
         wsl = nixpkgs.lib.nixosSystem {
@@ -66,6 +75,7 @@
             ./hosts/wsl/default.nix
             home-manager.nixosModules.home-manager
             stylix.nixosModules.stylix
+            { home-manager.extraSpecialArgs = { inherit inputs; }; }
           ];
         };
       };
