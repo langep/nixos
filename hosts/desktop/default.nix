@@ -64,6 +64,12 @@
 
   services.blueman.enable = true;
 
+  # Gamepad
+  hardware.xone.enable = true; # xbox wireless adapter
+  environment.systemPackages = with pkgs; [
+    linuxKernel.packages.linux_zen.xone
+  ];
+
   # SSD
   services.fstrim.enable = true;
 
@@ -80,12 +86,12 @@
       matchConfig.Name = "enp7s0";
       networkConfig = {
         DHCP = "ipv4";
-        IPv6AcceptRA = true;
+        IPv6AcceptRA = false;
         DNS = [
           "1.1.1.1"
           "1.0.0.1"
-          "2606:4700:4700::1111"
-          "2606:4700:4700::1001"
+          # "2606:4700:4700::1111"
+          # "2606:4700:4700::1001"
         ];
       };
       dhcpV4Config = {
@@ -93,13 +99,13 @@
         RouteMetric = 10; # routing priority should we e.g. add wifi later
       };
 
-      dhcpV6Config = {
-        UseDNS = false;
-      };
+      # dhcpV6Config = {
+      #   UseDNS = false;
+      # };
 
-      ipv6AcceptRAConfig = {
-        UseDNS = false;
-      };
+      # ipv6AcceptRAConfig = {
+      #   UseDNS = false;
+      # };
     };
   };
 
