@@ -19,7 +19,7 @@
           (extension "web-clipper-obsidian" "clipper@obsidian.md")
         ];
       SearchEngines = {
-        Default = "Startpage";
+        Default = "Google";
         PreventInstalls = true;
         Add = [
           {
@@ -31,7 +31,6 @@
           }
         ];
         Remove = [
-          "Google"
           "Bing"
           "Amazon.com"
           "eBay"
@@ -50,6 +49,9 @@
           "privacy.resistFingerprinting" = false;
           "privacy.clearOnShutdown_v2.cookiesAndStorage" = false;
           "webgl.disabled" = false;
+          # DRM media
+          "media.eme.enabled" = true;
+          "media.gmp-provider.enabled" = true;
         };
       };
     };

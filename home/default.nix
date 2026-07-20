@@ -15,6 +15,7 @@
     swayimg # image-viewer
     pavucontrol # audio settings gui
     obsidian # notes
+    firefox
   ];
 
   imports = [
