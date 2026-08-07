@@ -122,6 +122,9 @@
   hardware.nvidia-container-toolkit.enable = true;
   users.users.langep.extraGroups = lib.mkAfter [ "docker" ];
 
+  # Thunar (File Explorer)
+  services.gvfs.enable = true; # trash, network shares
+  services.tumbler.enable = true; # image thumbnails
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave

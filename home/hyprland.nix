@@ -87,8 +87,9 @@ in
         "SUPER SHIFT, 4, movetoworkspace, 4"
         "SUPER SHIFT, 5, movetoworkspace, 5"
 
-        ", Print, exec, grim ~/Pictures/$(date +'%y-%m-%d_%h-%m-%s')_screenshot.png"
-
+        ", Print, exec, hyprshot -m region"
+        "SHIFT, Print, exec, hyprshot -m output"
+        "ALT, Print, exec, hyprshot -m window"
       ];
 
       bindm = [
@@ -100,6 +101,7 @@ in
 
   home.packages = with pkgs; [
     fuzzel
+    hyprshot
     mako
     wl-clipboard
   ];

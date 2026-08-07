@@ -13,9 +13,12 @@
     yazi # tui file browser
     chafa # image-to-terminal
     swayimg # image-viewer
+    mpv # video player
     pavucontrol # audio settings gui
     obsidian # notes
     firefox
+    xfce.thunar
+    xfce.thunar-archive-plugin
   ];
 
   imports = [
