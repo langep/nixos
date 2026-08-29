@@ -16,6 +16,7 @@
     mpv # video player
     pavucontrol # audio settings gui
     obsidian # notes
+    ldtk # 2D level editor
     firefox
     xfce.thunar
     xfce.thunar-archive-plugin
