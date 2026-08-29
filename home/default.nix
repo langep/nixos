@@ -17,6 +17,7 @@
     pavucontrol # audio settings gui
     obsidian # notes
     ldtk # 2D level editor
+    aseprite # pixel art editor
     firefox
     xfce.thunar
     xfce.thunar-archive-plugin
