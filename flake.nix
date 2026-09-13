@@ -33,6 +33,7 @@
     };
     claude-code.url = "github:sadjow/claude-code-nix";
     codex-cli-nix.url = "github:sadjow/codex-cli-nix";
+    revdiff.url = "github:umputun/revdiff/v1.12.0";
   };
 
   outputs =
