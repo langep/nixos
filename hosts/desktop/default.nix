@@ -24,6 +24,7 @@
   boot.kernelParams = [
     "amd_pstate=active"
     "nvidia-drm.fbdev=1"
+    "video=DP-1:3840x2160@60"
     "quiet"
     "udev.log_priority=3"
   ];
