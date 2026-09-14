@@ -31,8 +31,14 @@
   boot.consoleLogLevel = 3;
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
+  # Lanzaboote replaces systemd-boot and signs unified kernel images with the
+  # locally owned keys in /var/lib/sbctl.
+  boot.loader.systemd-boot.enable = lib.mkForce false;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.lanzaboote = {
+    enable = true;
+    pkiBundle = "/var/lib/sbctl";
+  };
 
   # Network
   networking.hostName = "desktop";
@@ -68,6 +74,8 @@
   # Gamepad
   hardware.xone.enable = true; # xbox wireless adapter
   environment.systemPackages = with pkgs; [
+    # Create/enroll Secure Boot keys and verify signed EFI images.
+    sbctl
     linuxKernel.packages.linux_zen.xone
   ];
 

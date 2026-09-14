@@ -5,6 +5,12 @@
     # Common
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
+    # Signed unified kernel images for UEFI Secure Boot.
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v1.1.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Home Manager
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -53,6 +59,7 @@
           inherit system;
           specialArgs = { inherit inputs; };
           modules = [
+            inputs.lanzaboote.nixosModules.lanzaboote
             ./hosts/desktop/default.nix
             home-manager.nixosModules.home-manager
             stylix.nixosModules.stylix
