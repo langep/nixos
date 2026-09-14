@@ -8,6 +8,7 @@
 {
   home.packages = with pkgs; [
     htop
+    ripgrep
     grim # screenshots
     slurp # screenshots
     yazi # tui file browser
