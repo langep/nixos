@@ -4,6 +4,7 @@
   programs.gamemode.enable = true;
 
   environment.systemPackages = with pkgs; [
+    beyond-all-reason
     lutris
     mangohud
     protonup-qt
