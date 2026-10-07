@@ -37,6 +37,7 @@
     ./zoxide.nix
   ]
   ++ lib.optionals osConfig.programs.hyprland.enable [
+    ./easyeffects.nix
     ./hyprland.nix
     ./librewolf.nix
     ./waybar.nix

@@ -27,6 +27,7 @@
   };
 
   # Audio
+  programs.dconf.enable = true; # EasyEffects settings backend
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
