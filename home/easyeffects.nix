@@ -8,12 +8,37 @@
       input = {
         blocklist = [ ];
         plugins_order = [
+          "stereo_tools#0"
           "filter#0"
           "equalizer#0"
           "expander#0"
           "compressor#0"
           "limiter#0"
         ];
+
+        "stereo_tools#0" = {
+          bypass = false;
+          input-gain = 0.0;
+          output-gain = 0.0;
+          balance-in = 0.0;
+          balance-out = 0.0;
+          softclip = false;
+          mutel = false;
+          muter = false;
+          phasel = false;
+          phaser = false;
+          mode = "LR > LL (Mono Left Channel)";
+          side-level = 0.0;
+          side-balance = 0.0;
+          middle-level = 0.0;
+          middle-panorama = 0.0;
+          stereo-base = 0.0;
+          delay = 0.0;
+          sc-level = 1.0;
+          stereo-phase = 0.0;
+          dry = -100.0;
+          wet = 0.0;
+        };
 
         "filter#0" = {
           bypass = false;
