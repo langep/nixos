@@ -53,6 +53,7 @@
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true; # Steam
   hardware.nvidia = {
+    package = config.boot.kernelPackages.nvidiaPackages.latest;
     open = true;
     modesetting.enable = true;
     powerManagement.enable = false;
