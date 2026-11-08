@@ -20,6 +20,7 @@
         ];
       SearchEngines = {
         Default = "Google";
+        DefaultPrivate = "Google";
         PreventInstalls = true;
         Add = [
           {

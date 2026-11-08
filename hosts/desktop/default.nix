@@ -77,6 +77,8 @@
   environment.systemPackages = with pkgs; [
     # Create/enroll Secure Boot keys and verify signed EFI images.
     sbctl
+    # Inspect multigig Ethernet negotiation and driver error counters.
+    ethtool
     linuxKernel.packages.linux_zen.xone
   ];
 
@@ -92,6 +94,19 @@
 
   systemd.network = {
     enable = true;
+    # Stability test: do not advertise 5 Gb/s on the long cable run.
+    # Keep auto-negotiation enabled and allow fallback through 2.5 Gb/s.
+    links."10-wired-2_5gbe" = {
+      matchConfig.MACAddress = "34:5a:60:57:04:b5";
+      linkConfig.Advertise = [
+        "10baset-half"
+        "10baset-full"
+        "100baset-half"
+        "100baset-full"
+        "1000baset-full"
+        "2500baset-full"
+      ];
+    };
     networks."10-wired" = {
       matchConfig.Name = "enp7s0";
       networkConfig = {

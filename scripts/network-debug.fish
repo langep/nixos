@@ -45,6 +45,12 @@ begin
     ip -statistics -statistics link show enp7s0
 
     echo
+    echo "===== Ethernet negotiation and driver counters ====="
+    ethtool enp7s0
+    ethtool -i enp7s0
+    ethtool -S enp7s0
+
+    echo
     echo "===== Neighbor table ====="
     ip neigh show dev enp7s0
 
