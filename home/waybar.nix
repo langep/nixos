@@ -14,11 +14,11 @@ let
       pkgs.jq
     ];
     text = ''
-      network_interface=enp7s0
+      network_interface=eth0
       sysfs_interface="/sys/class/net/$network_interface"
 
       if [[ ! -d "$sysfs_interface" ]] || [[ "$(<"$sysfs_interface/operstate")" != "up" ]]; then
-        jq -cn '{text:"disconnected ⚠",tooltip:"enp7s0 is disconnected",class:"disconnected"}'
+        jq -cn '{text:"disconnected ⚠",tooltip:"eth0 is disconnected",class:"disconnected"}'
         exit 0
       fi
 

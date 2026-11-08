@@ -98,17 +98,26 @@
     # Keep auto-negotiation enabled and allow fallback through 2.5 Gb/s.
     links."10-wired-2_5gbe" = {
       matchConfig.MACAddress = "34:5a:60:57:04:b5";
-      linkConfig.Advertise = [
-        "10baset-half"
-        "10baset-full"
-        "100baset-half"
-        "100baset-full"
-        "1000baset-full"
-        "2500baset-full"
-      ];
+      linkConfig = {
+        # This custom .link file is evaluated before 99-default.link, so make
+        # the otherwise-kernel-provided name explicit and stable.
+        Name = "eth0";
+        Advertise = [
+          "10baset-half"
+          "10baset-full"
+          "100baset-half"
+          "100baset-full"
+          "1000baset-full"
+          "2500baset-full"
+        ];
+      };
     };
     networks."10-wired" = {
-      matchConfig.Name = "enp7s0";
+      matchConfig = {
+        Name = "eth0";
+        MACAddress = "34:5a:60:57:04:b5";
+      };
+      linkConfig.ActivationPolicy = "up";
       networkConfig = {
         DHCP = "ipv4";
         IPv6AcceptRA = false;

@@ -42,21 +42,21 @@ begin
 
     echo
     echo "===== Ethernet counters ====="
-    ip -statistics -statistics link show enp7s0
+    ip -statistics -statistics link show eth0
 
     echo
     echo "===== Ethernet negotiation and driver counters ====="
-    ethtool enp7s0
-    ethtool -i enp7s0
-    ethtool -S enp7s0
+    ethtool eth0
+    ethtool -i eth0
+    ethtool -S eth0
 
     echo
     echo "===== Neighbor table ====="
-    ip neigh show dev enp7s0
+    ip neigh show dev eth0
 
     echo
     echo "===== networkd status ====="
-    networkctl status enp7s0 --no-pager
+    networkctl status eth0 --no-pager
 
     echo
     echo "===== Generated network configuration ====="
@@ -71,7 +71,7 @@ begin
     echo
     echo "===== Current boot network journal ====="
     journalctl -b --no-pager -o short-monotonic | grep -Ei \
-        'r8169|rtl8126|enp7s0|networkd|resolved|dhcp|dns|carrier|watchdog|timeout|reset|unreachable|no route|packet|firmware'
+        'r8169|rtl8126|eth0|networkd|resolved|dhcp|dns|carrier|watchdog|timeout|reset|unreachable|no route|packet|firmware'
 
     echo
     echo "===== Failed units ====="
