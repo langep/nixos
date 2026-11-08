@@ -24,6 +24,13 @@
         PreventInstalls = true;
         Add = [
           {
+            Name = "Google";
+            URLTemplate = "https://www.google.com/search?q={searchTerms}";
+            Method = "GET";
+            IconURL = "https://www.google.com/favicon.ico";
+            Alias = "@google";
+          }
+          {
             Name = "Startpage";
             URLTemplate = "https://www.startpage.com/sp/search?query={searchTerms}";
             Method = "GET";
