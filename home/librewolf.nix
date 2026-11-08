@@ -32,6 +32,7 @@
           }
         ];
         Remove = [
+          "DuckDuckGo No-AI"
           "Bing"
           "Amazon.com"
           "eBay"
