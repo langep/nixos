@@ -30,17 +30,13 @@
             IconURL = "https://www.google.com/favicon.ico";
             Alias = "@google";
           }
-          {
-            Name = "Startpage";
-            URLTemplate = "https://www.startpage.com/sp/search?query={searchTerms}";
-            Method = "GET";
-            IconURL = "https://www.startpage.com/favicon.ico";
-            Alias = "@sp";
-          }
         ];
         Remove = [
           "DuckDuckGo No-AI"
+          "Mojeek"
+          "Startpage"
           "Bing"
+          "Perplexity"
           "Amazon.com"
           "eBay"
           "Twitter"
