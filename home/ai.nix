@@ -7,10 +7,10 @@
 }:
 {
   home.packages = [
-    inputs.antigravity-nix.packages.${pkgs.system}.google-antigravity-cli
-    inputs.claude-code.packages.${pkgs.system}.default
-    inputs.codex-cli-nix.packages.${pkgs.system}.default
-    inputs.revdiff.packages.${pkgs.system}.default
+    inputs.antigravity-nix.packages.${pkgs.stdenv.hostPlatform.system}.google-antigravity-cli
+    inputs.claude-code.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.codex-cli-nix.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.revdiff.packages.${pkgs.stdenv.hostPlatform.system}.default
     pkgs.jq
   ];
 

@@ -20,8 +20,8 @@
     ldtk # 2D level editor
     aseprite # pixel art editor
     firefox
-    xfce.thunar
-    xfce.thunar-archive-plugin
+    thunar
+    thunar-archive-plugin
   ];
 
   imports = [
@@ -50,7 +50,13 @@
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
+    setSessionVariables = true;
   };
+
+  home.pointerCursor.enable = true;
+
+  # Rofi is not used; its Stylix target currently writes a renamed HM option.
+  stylix.targets.rofi.enable = false;
 
   home.sessionVariables = {
     EDITOR = "hx";

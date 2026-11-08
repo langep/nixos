@@ -7,7 +7,7 @@
 
     # Signed unified kernel images for UEFI Secure Boot.
     lanzaboote = {
-      url = "github:nix-community/lanzaboote/v1.1.0";
+      url = "github:nix-community/lanzaboote/v1.2.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -50,15 +50,12 @@
       stylix,
       ...
     }@inputs:
-    let
-      system = "x86_64-linux";
-    in
     {
       nixosConfigurations = {
         desktop = nixpkgs.lib.nixosSystem {
-          inherit system;
           specialArgs = { inherit inputs; };
           modules = [
+            { nixpkgs.hostPlatform = "x86_64-linux"; }
             inputs.lanzaboote.nixosModules.lanzaboote
             ./hosts/desktop/default.nix
             home-manager.nixosModules.home-manager
@@ -67,9 +64,9 @@
           ];
         };
         thinkpad = nixpkgs.lib.nixosSystem {
-          inherit system;
           specialArgs = { inherit inputs; };
           modules = [
+            { nixpkgs.hostPlatform = "x86_64-linux"; }
             ./hosts/thinkpad/default.nix
             home-manager.nixosModules.home-manager
             stylix.nixosModules.stylix
@@ -77,9 +74,9 @@
           ];
         };
         wsl = nixpkgs.lib.nixosSystem {
-          inherit system;
           specialArgs = { inherit inputs; };
           modules = [
+            { nixpkgs.hostPlatform = "x86_64-linux"; }
             ./hosts/wsl/default.nix
             home-manager.nixosModules.home-manager
             stylix.nixosModules.stylix
