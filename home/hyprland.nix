@@ -48,6 +48,7 @@ in
 {
   services.hyprpaper.enable = true;
   services.hyprpolkitagent.enable = true;
+  services.cliphist.enable = true;
   wayland.windowManager.hyprland = {
     enable = true;
     configType = "lua";
@@ -104,6 +105,7 @@ in
 
       hl.bind("SUPER + Return", hl.dsp.exec_cmd("foot"))
       hl.bind("SUPER + Space", hl.dsp.exec_cmd("fuzzel"))
+      hl.bind("SUPER + C", hl.dsp.exec_cmd("cliphist list | fuzzel --dmenu --prompt 'Clipboard: ' | cliphist decode | wl-copy"))
       hl.bind("SUPER + Q", hl.dsp.window.close())
       hl.bind("SUPER + F", hl.dsp.window.fullscreen())
       hl.bind("SUPER + V", hl.dsp.window.float())
