@@ -22,6 +22,9 @@
     firefox
     thunar
     thunar-archive-plugin
+    xarchiver
+    unzip
+    zip
   ];
 
   imports = [
