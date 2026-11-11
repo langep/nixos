@@ -143,6 +143,21 @@
     };
   };
 
+  # systemd's .link Advertise= setting is retained above as documentation and
+  # an early attempt, but r8169 did not apply it during device initialization.
+  # Enforce the same advertisement once the RTL8126 device actually exists.
+  systemd.services.ethernet-2_5g-cap = {
+    description = "Limit RTL8126 Ethernet auto-negotiation to 2.5 Gb/s";
+    wantedBy = [ "multi-user.target" ];
+    after = [ "sys-subsystem-net-devices-eth0.device" ];
+    bindsTo = [ "sys-subsystem-net-devices-eth0.device" ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      ExecStart = "${pkgs.ethtool}/bin/ethtool -s eth0 autoneg on advertise 0x80000000002f";
+    };
+  };
+
   services.resolved = {
     enable = true;
     settings.Resolve.DNSSEC = "false";
