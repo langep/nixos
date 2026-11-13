@@ -22,6 +22,10 @@ in
     jqBin=${lib.escapeShellArg (lib.getExe pkgs.jq)}
     codexTmp=${lib.escapeShellArg "${config.home.homeDirectory}/.codex/.tmp"}
 
+    # Home Manager activations have a minimal PATH. Codex shells out to Git
+    # for remote marketplaces, so make the configured Git package explicit.
+    export PATH=${lib.escapeShellArg (lib.makeBinPath [ config.programs.git.package ])}:$PATH
+
     # Codex records Git marketplace checkouts below .codex/.tmp, but a new
     # machine may have the registry state before this untracked directory.
     run mkdir -p "$codexTmp/marketplaces"
