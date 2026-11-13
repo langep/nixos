@@ -37,6 +37,9 @@
   # Firmware Updates
   services.fwupd.enable = true;
 
+  # Battery state provider used by throttled over the system D-Bus.
+  services.upower.enable = true;
+
   # Client for streaming games and the desktop from Sunshine hosts.
   environment.systemPackages = [ pkgs.moonlight-qt ];
 
