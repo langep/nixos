@@ -19,5 +19,7 @@
     mangohud
     moonlight-qt
     protonup-qt
+    # Run Windows-only development utilities such as the EOS Dev Auth Tool.
+    wineWow64Packages.stable
   ];
 }
