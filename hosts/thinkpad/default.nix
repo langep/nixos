@@ -37,6 +37,9 @@
   # Firmware Updates
   services.fwupd.enable = true;
 
+  # Client for streaming games and the desktop from Sunshine hosts.
+  environment.systemPackages = [ pkgs.moonlight-qt ];
+
   # Power Management
   services.tlp = {
     enable = true;
