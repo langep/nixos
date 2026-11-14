@@ -10,20 +10,20 @@ let
     "thinkpad" = [
       {
         output = "eDP-1";
-        mode = "3840x2400@60";
+        mode = "3840x2160@60";
         position = "0x0";
         scale = 2;
       }
     ];
     "desktop" = [
       {
-        output = "DP-1";
+        output = "DP-4";
         mode = "3840x2160@239.98Hz";
         position = "0x0";
         scale = 1;
       }
       {
-        output = "DP-2";
+        output = "DP-5";
         mode = "2560x1440@144Hz";
         position = "3840x0";
         scale = 1;
@@ -33,12 +33,12 @@ let
   workspacesByHost = {
     "thinkpad" = [ ];
     "desktop" = [
-      { workspace = "1"; monitor = "DP-1"; persistent = true; }
-      { workspace = "2"; monitor = "DP-1"; persistent = true; }
-      { workspace = "3"; monitor = "DP-1"; persistent = true; }
-      { workspace = "4"; monitor = "DP-1"; persistent = true; }
-      { workspace = "5"; monitor = "DP-2"; persistent = true; }
-      { workspace = "6"; monitor = "DP-2"; persistent = true; }
+      { workspace = "1"; monitor = "DP-4"; persistent = true; }
+      { workspace = "2"; monitor = "DP-4"; persistent = true; }
+      { workspace = "3"; monitor = "DP-4"; persistent = true; }
+      { workspace = "4"; monitor = "DP-4"; persistent = true; }
+      { workspace = "5"; monitor = "DP-5"; persistent = true; }
+      { workspace = "6"; monitor = "DP-5"; persistent = true; }
     ];
   };
   monitors = monitorsByHost.${osConfig.networking.hostName} or [ ];

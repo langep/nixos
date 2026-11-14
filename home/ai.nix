@@ -41,7 +41,11 @@ in
     fi
 
     pluginsJson="$($codexBin plugin list --json)"
-    for plugin in revdiff@revdiff revdiff-planning@revdiff; do
+    if "$jqBin" -e '.installed[] | select(.pluginId == "revdiff-planning@revdiff")' \
+      <<<"$pluginsJson" >/dev/null; then
+      run "$codexBin" plugin remove revdiff-planning@revdiff
+    fi
+    for plugin in revdiff@revdiff; do
       pluginPath="$("$jqBin" -r --arg plugin "$plugin" '.installed[] | select(.pluginId == $plugin) | .source.path // empty' <<<"$pluginsJson")"
       if [[ -n "$pluginPath" && ! -d "$pluginPath" ]]; then
         run "$codexBin" plugin remove "$plugin"

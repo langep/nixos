@@ -34,6 +34,12 @@
   # Network
   networking.hostName = "thinkpad";
 
+  # Discover Sunshine hosts advertised over mDNS on the local network.
+  services.avahi = {
+    enable = true;
+    openFirewall = true;
+  };
+
   # Firmware Updates
   services.fwupd.enable = true;
 
