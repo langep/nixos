@@ -43,6 +43,29 @@
   # Network
   networking.hostName = "desktop";
 
+  # Advertise desktop.local on the LAN so clients do not need a fixed IP.
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+
+  # Waypipe uses SSH as its transport.  Keep port 22 reachable only through
+  # the desktop's wired LAN interface; do not expose it on every interface.
+  services.openssh = {
+    enable = true;
+    openFirewall = false;
+    settings = {
+      PermitRootLogin = "no";
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+    };
+  };
+  users.users.langep.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILmEeCVdbKJUUHD3JLASzlr9QQaCpAZsJZRyLibHMm82"
+  ];
+  networking.firewall.interfaces.enp7s0.allowedTCPPorts = [ 22 ];
+
   # Firmware Updates
   hardware.enableRedistributableFirmware = true;
   services.fwupd.enable = true;

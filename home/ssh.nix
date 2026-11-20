@@ -7,7 +7,13 @@
         User = "git";
       };
 
-      "*" = lib.hm.dag.entryAfter [ "github.com" ] ({
+      "desktop" = lib.mkIf (osConfig.networking.hostName == "thinkpad") {
+        HostName = "desktop.local";
+        User = "langep";
+        ForwardAgent = false;
+      };
+
+      "*" = lib.hm.dag.entryAfter [ "github.com" "desktop" ] ({
         ServerAliveInterval = 60;
       }
       // lib.optionalAttrs osConfig.programs._1password.enable {

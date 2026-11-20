@@ -25,6 +25,7 @@
     xarchiver
     unzip
     zip
+    waypipe # forward Wayland applications over SSH
   ];
 
   imports = [
