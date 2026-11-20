@@ -87,75 +87,24 @@
 
   # Networking
   networking = {
-    networkmanager.enable = false;
-    useNetworkd = true;
-    useDHCP = false;
+    networkmanager = {
+      enable = true;
+      dns = "systemd-resolved";
+      settings = {
+        # Global DNS overrides DNS advertised by DHCP on every connection.
+        "global-dns-domain-*".servers = "1.1.1.1,1.0.0.1";
+      };
+    };
+    nameservers = [
+      "1.1.1.1"
+      "1.0.0.1"
+    ];
   };
 
-  systemd.network = {
-    enable = true;
-    # Stability test: do not advertise 5 Gb/s on the long cable run.
-    # Keep auto-negotiation enabled and allow fallback through 2.5 Gb/s.
-    links."10-wired-2_5gbe" = {
-      matchConfig.MACAddress = "34:5a:60:57:04:b5";
-      linkConfig = {
-        # This custom .link file is evaluated before 99-default.link, so make
-        # the otherwise-kernel-provided name explicit and stable.
-        Name = "eth0";
-        Advertise = [
-          "10baset-half"
-          "10baset-full"
-          "100baset-half"
-          "100baset-full"
-          "1000baset-full"
-          "2500baset-full"
-        ];
-      };
-    };
-    networks."10-wired" = {
-      matchConfig = {
-        Name = "eth0";
-        MACAddress = "34:5a:60:57:04:b5";
-      };
-      linkConfig.ActivationPolicy = "up";
-      networkConfig = {
-        DHCP = "ipv4";
-        IPv6AcceptRA = false;
-        DNS = [
-          "1.1.1.1"
-          "1.0.0.1"
-          # "2606:4700:4700::1111"
-          # "2606:4700:4700::1001"
-        ];
-      };
-      dhcpV4Config = {
-        UseDNS = false;
-        RouteMetric = 10; # routing priority should we e.g. add wifi later
-      };
-
-      # dhcpV6Config = {
-      #   UseDNS = false;
-      # };
-
-      # ipv6AcceptRAConfig = {
-      #   UseDNS = false;
-      # };
-    };
-  };
-
-  # systemd's .link Advertise= setting is retained above as documentation and
-  # an early attempt, but r8169 did not apply it during device initialization.
-  # Enforce the same advertisement once the RTL8126 device actually exists.
-  systemd.services.ethernet-2_5g-cap = {
-    description = "Limit RTL8126 Ethernet auto-negotiation to 2.5 Gb/s";
-    wantedBy = [ "multi-user.target" ];
-    after = [ "sys-subsystem-net-devices-eth0.device" ];
-    bindsTo = [ "sys-subsystem-net-devices-eth0.device" ];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-      ExecStart = "${pkgs.ethtool}/bin/ethtool -s eth0 autoneg on advertise 0x80000000002f";
-    };
+  # Disable IPv6 for current and newly-created interfaces.
+  boot.kernel.sysctl = {
+    "net.ipv6.conf.all.disable_ipv6" = 1;
+    "net.ipv6.conf.default.disable_ipv6" = 1;
   };
 
   services.resolved = {
