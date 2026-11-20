@@ -73,6 +73,16 @@
             { home-manager.extraSpecialArgs = { inherit inputs; }; }
           ];
         };
+        steam-machine = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
+          modules = [
+            { nixpkgs.hostPlatform = "x86_64-linux"; }
+            ./hosts/steam-machine/default.nix
+            home-manager.nixosModules.home-manager
+            stylix.nixosModules.stylix
+            { home-manager.extraSpecialArgs = { inherit inputs; }; }
+          ];
+        };
         wsl = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs; };
           modules = [
