@@ -10,9 +10,8 @@ let
     focus_follows_mouse no
     output * bg #20242b solid_color
 
-    # Keep this compositor alive while applications are repeatedly closed and
-    # relaunched. Exiting Sway ends the Moonshine streaming session.
-    exec ${pkgs.foot}/bin/foot --working-directory=/home/langep/Projects/zengine
+    # rz uses this hidden terminal to give launched applications a live PTY.
+    for_window [app_id="rz-launcher"] move scratchpad
 
     bindsym $mod+Return exec ${pkgs.foot}/bin/foot --working-directory=/home/langep/Projects/zengine
     bindsym $mod+d exec ${pkgs.fuzzel}/bin/fuzzel
@@ -28,6 +27,11 @@ let
     bindsym $mod+Shift+j move down
     bindsym $mod+Shift+k move up
     bindsym $mod+Shift+l move right
+
+    # Each rz-launched app occupies its own workspace, so cycle workspaces as
+    # if they were windows. Empty workspaces disappear after switching away.
+    bindsym Mod1+Tab workspace next_on_output
+    bindsym Mod1+Shift+Tab workspace prev_on_output
 
     bindsym $mod+1 workspace number 1
     bindsym $mod+2 workspace number 2
