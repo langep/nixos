@@ -14,8 +14,8 @@
     };
 
     image = pkgs.fetchurl {
-      url = "https://w.wallhaven.cc/full/vp/wallhaven-vp5ogl.jpg";
-      sha256 = "sha256-B+NDRmfgL2tMoUDXdnCDSU+FGQBZBl2+Vck6IDHNRMw=";
+      url = "https://w.wallhaven.cc/full/je/wallhaven-jel1jq.jpg";
+      sha256 = "sha256-svsxJvdqObM3aQZJJJbT3c4oXSYmkxKxcgSfF/fqKPk=";
     };
 
     cursor = {
