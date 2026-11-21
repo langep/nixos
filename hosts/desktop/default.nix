@@ -13,6 +13,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./moonshine.nix
     ../common/default.nix
     ../common/hyprland.nix
     ../common/1password.nix
