@@ -23,6 +23,7 @@
         modules-right = [
           "pulseaudio"
         ]
+        ++ lib.optionals osConfig.hardware.bluetooth.enable [ "bluetooth" ]
         ++ [ "network" ]
         ++ lib.optionals (osConfig.networking.hostName == "thinkpad") [ "battery" ]
         ++ [ "tray" ];
@@ -38,13 +39,17 @@
         };
 
         battery = {
-          format = "{capacity}% {icon}";
+          format = "{icon} {capacity}%";
+          format-charging = "󰂄 {capacity}%";
+          format-plugged = " {capacity}%";
+          format-full = " {capacity}%";
+          format-alt = "{icon} {time}";
           format-icons = [
-            ""
-            ""
-            ""
-            ""
-            ""
+            ""
+            ""
+            ""
+            ""
+            ""
           ];
           states = {
             warning = 30;
@@ -62,17 +67,40 @@
         };
 
         pulseaudio = {
-          format = "{volume}% {icon}";
-          format-muted = "muted ";
+          format = "{icon} {volume}%";
+          format-bluetooth = " {icon} {volume}%";
+          format-muted = "󰖁 muted";
+          tooltip-format = "{desc}";
           format-icons = {
+            headphone = "";
+            hands-free = "󰂑";
+            headset = "󰂑";
+            phone = "";
+            portable = "";
+            car = "";
+            speaker = "";
+            hdmi = "󰡁";
             default = [
-              ""
-              ""
-              ""
+              ""
+              ""
+              ""
             ];
           };
           on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
           on-right-click = "pavucontrol";
+        };
+
+        bluetooth = {
+          format = "󰂯";
+          format-disabled = "󰂲";
+          format-off = "󰂲";
+          format-connected = "󰂱 {num_connections}";
+          format-connected-battery = "󰂱 {device_battery_percentage}%";
+          tooltip-format = "{controller_alias}\n{num_connections} connected";
+          tooltip-format-connected = "{controller_alias}\n{num_connections} connected\n\n{device_enumerate}";
+          tooltip-format-enumerate-connected = "{device_alias}";
+          tooltip-format-enumerate-connected-battery = "{device_alias}: {device_battery_percentage}%";
+          on-click = "blueman-manager";
         };
 
         tray = {
@@ -108,12 +136,28 @@
         border-radius: 0;
       }
 
-      #clock, #battery, #cpu, #memory, #network, #pulseaudio, #tray {
+      #clock, #battery, #cpu, #memory, #network, #pulseaudio, #bluetooth, #tray {
         padding: 0 8px;
         margin: 0 1px;
         border-radius: 0;
         background: @base00;
         color: @base05;
+      }
+
+      #battery.charging, #battery.plugged, #bluetooth.connected {
+        color: @base0B;
+      }
+
+      #battery.warning:not(.charging) {
+        color: @base09;
+      }
+
+      #battery.critical:not(.charging) {
+        color: @base08;
+      }
+
+      #pulseaudio.muted, #bluetooth.disabled, #bluetooth.off {
+        color: @base03;
       }
 
     '';

@@ -43,6 +43,12 @@
   # Firmware Updates
   services.fwupd.enable = true;
 
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+  services.blueman.enable = true;
+
   # Battery state provider used by throttled over the system D-Bus.
   services.upower.enable = true;
 
