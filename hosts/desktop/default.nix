@@ -102,6 +102,9 @@
     sbctl
     # Inspect multigig Ethernet negotiation and driver error counters.
     ethtool
+    # Allow `waypipe --xwls ssh ...` to forward legacy X11 applications.
+    # Waypipe starts this on demand inside the forwarded session.
+    xwayland-satellite
     linuxKernel.packages.linux_zen.xone
   ];
 
