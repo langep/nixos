@@ -83,6 +83,14 @@
     powerManagement.enable = false;
     nvidiaSettings = true;
   };
+
+  # Hardware-accelerated screen recording with the ShadowPlay-style overlay.
+  # The NixOS module also installs capability wrappers for promptless capture.
+  programs.gpu-screen-recorder = {
+    enable = true;
+    ui.enable = true;
+  };
+
   environment.variables = {
     # increase nvidia shader cache to 64GB to prevent frequent shader recompilations
     __GL_SHADER_DISK_CACHE_SIZE = "68719476736";

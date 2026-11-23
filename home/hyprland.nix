@@ -141,6 +141,9 @@ in
       hl.bind("SHIFT + Print", hl.dsp.exec_cmd("hyprshot -m output"))
       hl.bind("ALT + Print", hl.dsp.exec_cmd("hyprshot -m window"))
 
+      -- Open the GPU Screen Recorder overlay.
+      hl.bind("SUPER + ALT + G", hl.dsp.exec_cmd("gsr-ui"))
+
       hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), { mouse = true })
       hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
