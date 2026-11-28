@@ -67,6 +67,9 @@
   ];
   networking.firewall.interfaces.enp7s0.allowedTCPPorts = [ 22 ];
 
+  # Provide a responsive local printing backend for applications such as LibreWolf.
+  services.printing.enable = true;
+
   # Firmware Updates
   hardware.enableRedistributableFirmware = true;
   services.fwupd.enable = true;
