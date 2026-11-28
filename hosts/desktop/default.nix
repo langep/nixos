@@ -67,7 +67,7 @@
   ];
   networking.firewall.interfaces.enp7s0.allowedTCPPorts = [ 22 ];
 
-  # Provide a responsive local printing backend for applications such as LibreWolf.
+  # Provide the local printing backend used by Firefox and other applications.
   services.printing.enable = true;
 
   # Firmware Updates
@@ -139,10 +139,13 @@
     ];
   };
 
-  # Disable IPv6 for current and newly-created interfaces.
+  # Disable IPv6 for network interfaces, but keep it enabled on loopback.
+  # Firefox 160's CUPS integration otherwise black-holes ::1 connections
+  # while preparing print previews (Mozilla bug 2096134).
   boot.kernel.sysctl = {
     "net.ipv6.conf.all.disable_ipv6" = 1;
     "net.ipv6.conf.default.disable_ipv6" = 1;
+    "net.ipv6.conf.lo.disable_ipv6" = 0;
   };
 
   services.resolved = {
